@@ -30,6 +30,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ext.betaDistributionReleaseNotes="Android Travis CI Testing."
+            ext.betaDistributionEmails="phoenix@appscore.com.au, mark.fulton@appscore.com.au"
+            ext.betaDistributionNotifications=true
         }
     }
 }
