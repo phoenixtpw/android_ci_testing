@@ -29,4 +29,6 @@ functionalTests:
   stage: test
   script:
     - ./gradlew cAT
+
+after_success:
     - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
