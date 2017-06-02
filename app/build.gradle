@@ -26,6 +26,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs{
+        release{
+            storeFile file("phoenix_key")
+            storePassword "phoenixtxai"
+            keyAlias "phoenix_android_key"
+            keyPassword "phoenixtxai"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,6 +42,7 @@ android {
             ext.betaDistributionReleaseNotes="Android Travis CI Testing."
             ext.betaDistributionEmails="phoenix@appscore.com.au, mark.fulton@appscore.com.au"
             ext.betaDistributionNotifications=true
+            signingConfig signingConfigs.release
         }
     }
 }
