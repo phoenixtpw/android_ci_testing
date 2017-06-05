@@ -32,4 +32,4 @@ functionalTests:
 
 after_success:
     # - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
-    - sudo gem install fastline
+    - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk
