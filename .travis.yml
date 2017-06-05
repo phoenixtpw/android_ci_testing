@@ -31,4 +31,5 @@ functionalTests:
     - ./gradlew cAT
 
 after_success:
-    - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
+    # - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
+    - sudo gem install fastline
