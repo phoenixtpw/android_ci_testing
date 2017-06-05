@@ -14,8 +14,7 @@ android:
     - extra-android-m2repository
 
 before_install:
-  - gem update --system
-  - gem --version
+  - rvm install 2.0.0
   - gem install fastlane --no-rdoc --no-ri --no-document --quiet
 
 install: true
