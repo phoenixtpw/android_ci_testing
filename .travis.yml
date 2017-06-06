@@ -38,8 +38,5 @@ functionalTests:
 
 after_success:
 
-  - test $TRAVIS_BRANCH == "master"
-  - fastlane supply init
-  - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
-  - test $TRAVIS_BRANCH != "master"
-  - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
+  - test $TRAVIS_BRANCH == "master" && fastlane supply init && fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
+  - test $TRAVIS_BRANCH != "master" && ./gradlew assembleRelease crashlyticsUploadDistributionRelease
