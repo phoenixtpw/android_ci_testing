@@ -38,9 +38,8 @@ functionalTests:
 
 after_success:
 
-  if [${TRAVIS_BRANCH} == master];
-  then
+  [[ $TRAVIS_BRANCH == “master” ]]
     - fastlane supply init
     - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
-  else
+  [[ $TRAVIS_BRANCH != “master” ]]
     - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
