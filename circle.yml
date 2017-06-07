@@ -1,0 +1,44 @@
+machine:
+
+  environment:
+    QEMU_AUDIO_DRV: none
+
+  ruby:
+      version: 2.0.0
+
+dependencies:
+  pre:
+    - echo y | android update sdk --no-ui --all --filter android-25
+    - echo y | android update sdk --no-ui --all --filter platform-tools
+    - echo y | android update sdk --no-ui --all --filter build-tools-25.0.3
+    - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
+    - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
+    - echo y | android update sdk --no-ui --all --filter extra-google-m2repository
+
+#notifications:
+    #slack: appscore:oZxNUi5C6n0T6Bo5NmyRrQ9w
+
+test:
+  pre:
+    - emulator -avd circleci-android24 -no-window:
+        background: true
+        parallel: true
+    - circle-android wait-for-boot
+
+unitTests:
+  stage: test
+  script:
+    - ./gradlew test
+
+functionalTests:
+  stage: test
+  script:
+    - ./gradlew cAT
+
+#after_success:
+ #   - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
+ #         fastlane supply init;
+ #         fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication;
+ #     else
+ #         ./gradlew assembleRelease crashlyticsUploadDistributionRelease;
+ #     fi'

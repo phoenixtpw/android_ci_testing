@@ -17,10 +17,10 @@ notifications:
     slack: appscore:oZxNUi5C6n0T6Bo5NmyRrQ9w
 
 before_install:
-    - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
+  - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
           rvm install 2.0.0;
           gem install fastlane --no-rdoc --no-ri --no-document --quiet;
-      fi'
+    fi'
 
 install: true
 
