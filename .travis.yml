@@ -14,10 +14,8 @@ android:
     - extra-android-m2repository
 
 before_install:
-    - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
-          rvm install 2.0.0;
-          gem install fastlane --no-rdoc --no-ri --no-document --quiet;
-      fi'
+  - rvm install 2.0.0
+  - gem install fastlane --no-rdoc --no-ri --no-document --quiet
 
 install: true
 
@@ -42,6 +40,11 @@ after_success:
     - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
           fastlane supply init;
           fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication;
+          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message "Successfully deployed to Google Play!";
       else
           ./gradlew assembleRelease crashlyticsUploadDistributionRelease;
+          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message "Successfully deployed to Fabric!";
       fi'
+
+after_failure:
+    - fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message "Testing failed with the latest commit."
