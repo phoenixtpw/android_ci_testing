@@ -40,11 +40,11 @@ after_success:
     - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
           fastlane supply init;
           fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication;
-          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message 'Successfully deployed to Google Play!';
+          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message Successfully_deployed_to_Google Play!;
       else
           ./gradlew assembleRelease crashlyticsUploadDistributionRelease;
-          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message 'Successfully deployed to Fabric!';
+          fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success true --slack_url https://appscore.slack.com/ --channel #internal_devops --message Successfully_deployed_to_Fabric!;
       fi'
 
 after_failure:
-    - fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success false --slack_url https://appscore.slack.com/ --channel #internal_devops --message 'Testing failed during the latest commit.'
+    - fastlane slack --use_webhook_configured_username_and_icon false --username @phoenixtxai --success false --slack_url https://appscore.slack.com/ --channel #internal_devops --message Testing_failed_during_the_latest_commit.
