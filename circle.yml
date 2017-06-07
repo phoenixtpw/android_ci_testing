@@ -24,16 +24,18 @@ test:
         background: true
         parallel: true
     - circle-android wait-for-boot
-
-unitTests:
-  stage: test
-  script:
-    - ./gradlew test
-
-functionalTests:
-  stage: test
-  script:
+    - adb shell input keyevent 82 &
     - ./gradlew cAT
+
+# unitTests:
+#   stage: test
+#   script:
+#     - ./gradlew test
+
+# functionalTests:
+#   stage: test
+#   script:
+#     - ./gradlew cAT
 
 #after_success:
  #   - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
