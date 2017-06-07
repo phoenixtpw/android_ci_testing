@@ -15,8 +15,6 @@ android:
 
 notifications:
     slack: appscore:oZxNUi5C6n0T6Bo5NmyRrQ9w
-      on_success: always
-      on_failure: always
 
 before_install:
     - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
