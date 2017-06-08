@@ -8,15 +8,13 @@ machine:
 
 dependencies:
   pre:
+    - gem install fastlane --no-rdoc --no-ri --no-document --quiet;
     - echo y | android update sdk --no-ui --all --filter android-25
     - echo y | android update sdk --no-ui --all --filter platform-tools
     - echo y | android update sdk --no-ui --all --filter build-tools-25.0.3
     - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
     - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
     - echo y | android update sdk --no-ui --all --filter extra-google-m2repository
-    - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
-          gem install fastlane --no-rdoc --no-ri --no-document --quiet;
-    fi'
 
 test:
   pre:
@@ -45,4 +43,5 @@ deployment:
          - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
   staging:
     branch: development
+    commands:
          - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
