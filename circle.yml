@@ -32,7 +32,7 @@ deployment:
     branch: master
     commands:
          - ./gradlew assembleRelease
-         - fastlane supply --apk /home/ubuntu/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/ubuntu/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
+         - fastlane supply --apk ./app/build/outputs/apk/app-release.apk --json_key ./app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
   staging:
     branch: development
     commands:
