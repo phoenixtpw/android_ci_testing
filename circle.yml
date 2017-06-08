@@ -14,9 +14,9 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
     - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
     - echo y | android update sdk --no-ui --all --filter extra-google-m2repository
-
-#notifications:
-    #slack: appscore:oZxNUi5C6n0T6Bo5NmyRrQ9w
+    - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
+          gem install fastlane --no-rdoc --no-ri --no-document --quiet;
+    fi'
 
 test:
   pre:
@@ -37,10 +37,12 @@ test:
 #   script:
 #     - ./gradlew cAT
 
-#after_success:
- #   - 'if [ ${TRAVIS_BRANCH} = "master" ]; then
- #         fastlane supply init;
- #         fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication;
- #     else
- #         ./gradlew assembleRelease crashlyticsUploadDistributionRelease;
- #     fi'
+deployment:
+  production:
+    branch: master
+    commands:
+         - fastlane supply init
+         - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
+  staging:
+    branch: development
+         - ./gradlew assembleRelease crashlyticsUploadDistributionRelease
