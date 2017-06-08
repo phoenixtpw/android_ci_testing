@@ -23,24 +23,16 @@ test:
         parallel: true
     - circle-android wait-for-boot
     - adb shell input keyevent 82 &
-    - ./gradlew cAT
-
-# unitTests:
-#   stage: test
-#   script:
-#     - ./gradlew test
-
 # functionalTests:
-#   stage: test
-#   script:
-#     - ./gradlew cAT
+    - ./gradlew cAT
+# unitTests will be run by CircleCI default
 
 deployment:
   production:
     branch: master
     commands:
          - fastlane supply init
-         - fastlane supply --apk /home/travis/build/phoenixtpw/android_ci_testing/app/build/outputs/apk/app-release.apk --json_key /home/travis/build/phoenixtpw/android_ci_testing/app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
+         - fastlane supply --apk app/build/outputs/apk/app-release.apk --json_key app/Google-Play-Android-Developer-dfeb4d366961.json --track beta --package_name helloworld.app.com.myapplication
   staging:
     branch: development
     commands:
