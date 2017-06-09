@@ -33,7 +33,7 @@ User needs to create/ modify the .yml file and put it into the repository's root
 Travis CI detects ".travis.yml" file to activate the service. Following is a successful setting example.
 
 
-![alt text](https://www.dropbox.com/s/ab66jpjshlo7nvd/travis%20ci%20yml%20setting.png?dl=0)
+![Travis CI yml setting example](/readme_img/travis_ci_yml_setting.png)
  
  
  
