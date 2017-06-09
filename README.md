@@ -39,7 +39,7 @@ Travis CI detects ".travis.yml" file to activate the service. Following is a suc
  - Although Travis CI automatically accepts the license for user, it's still needed to have the corresponding build tool mentioned/ pre-installed (Eg. build-tools-25.0.3) to follow your app's gradle setting. Otherwise, it will fail with the following error: License for package Android SDK Build-Tools xxxxx not accepted.
  - As we only requires fastlane for Google Play deployment on master branch, we can have a if-else condition in before_install tag. However, since fastlane requires ruby 2.0.0 and above to operate the service, and Travis CI's pre-installed ruby version for Android runner is 1.9.3, it's required to have at least ruby 2.0.0 pre-installed here as well. Otherwise, it will fail when trying to deploy the build at the end of the running. 
  - Travis CI has slack plug-in for notification service. Please follow this link for further operation and put the corresponding channel and token in the yml file: https://my.slack.com/services/new/travis
- - For fastlane deployment setting, please follow this to setup: https://docs.fastlane.tools/getting-started/android/setup/#collect-your-google-credentials
+ - For fastlane deployment setting, please follow this to setup: https://docs.fastlane.tools/getting-started/android/setup/#collect-your-google-credentials .Please check [Google Play Deployment] section below when the 1st time you're trying to deploy the APK to Google Play.
  
  For more details regarding Travis CI setting, please check the official documentation for further info: https://docs.travis-ci.com/user/languages/android/
 
@@ -54,6 +54,11 @@ CircleCI detects "circle.yml" file to activate the service. Following is a succe
  
  - Since fastlane requires ruby 2.0.0 and above to operate the service, we need to mention it in the ruby version tag.
  - Circle has slack plug-in for notification service. Please follow this link for further operation: https://circleci.com/blog/slack-integration/
- - For fastlane deployment setting, please follow this to setup: https://docs.fastlane.tools/getting-started/android/setup/#collect-your-google-credentials
+ - For fastlane deployment setting, please follow this to setup: https://docs.fastlane.tools/getting-started/android/setup/#collect-your-google-credentials .Please check [Google Play Deployment] section below when the 1st time you're trying to deploy the APK to Google Play.
+ - Since CircleCI doesn't automatically generate a production build for you which Travis CI does, the ./gradlew assembleRelease is needed before using Faselane service for deployment.
  
  For more details regarding CircleCI setting, please check the official documentation for further info: https://circleci.com/docs/1.0/android/
+ 
+ #  Google Play Deployment
+ 
+ Since Google Play service updated the work flow, it's required to have the 1st time manually APK deployment now. Otherwise, there will be no package name generated in Google Play and Fastlane's supply service will get failed due to unable to find the matched package name in Google Play.
