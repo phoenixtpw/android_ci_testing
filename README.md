@@ -18,12 +18,12 @@ Currently we focus on cloud solution providers, and following are the achievable
 
 Generally speaking, these services are all followed the procedures below:
 
- - Set up virtual machine base environment (Ruby with Android studion installed)
+ - Set up virtual machine base environment (Ruby with Android studio installed)
  - Download/update the required SDK platforms, SDK tools, etc.
  - Set up the simulator and wait until its running
  - Running tests based on our code
  - Generate the signed build and deploy to the designated service (development branch to Fabric, master branch to Google Play)
- - Nodify users based on the setting (email, slack, etc..)
+ - Notify users based on the setting (email, slack, etc..)
  
 User needs to create/ modify the .yml file and put it into the repository's root folder. As soon as the service detects the corresponding .yml file everytime when committed, it automatically activates the CI service to deal with it. Detailed settings in specific service as below.
 
