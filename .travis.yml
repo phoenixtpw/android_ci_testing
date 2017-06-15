@@ -10,6 +10,7 @@ android:
     - android-22
     - android-25
     - sys-img-armeabi-v7a-android-22
+    - extra-android-m2repository
 
 notifications:
     slack: appscore:oZxNUi5C6n0T6Bo5NmyRrQ9w
